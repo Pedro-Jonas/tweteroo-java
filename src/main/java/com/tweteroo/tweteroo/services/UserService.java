@@ -1,7 +1,7 @@
 package com.tweteroo.tweteroo.services;
 
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ public class UserService {
 
 
     public void saveUser(UserDto data) {
-        Stream<Users> users = repository.findAll().stream().filter(i -> i.getUsername().equals(data.username()));
-        if (users.count() == 0) {
+        List<Users> users = repository.findAll().stream().filter(i -> i.getUsername().equals(data.username())).collect(Collectors.toList());
+        if (users.isEmpty()) {
             repository.save(new Users(data));
         } else {
             System.out.println("Usuário com nome já cadastrado");
-        }
+        } 
     }
 } 

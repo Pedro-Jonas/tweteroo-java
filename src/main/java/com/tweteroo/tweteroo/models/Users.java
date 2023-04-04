@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 5, nullable = false)
+    @Column(length = 20, nullable = false)
     private String username;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 200 , nullable = false)
     private String avatar;
  
-    public User (UserDto data) {
+    public Users (UserDto data) {
         this.username = data.username();
         this.avatar = data.avatar();
     }

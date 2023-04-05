@@ -18,7 +18,8 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public void createUser(@RequestBody @Valid UserDto req) {
+    public String createUser(@RequestBody @Valid UserDto req) {
         service.saveUser(req);
+        return "OK";
     }
 }

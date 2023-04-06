@@ -39,7 +39,7 @@ public class TweetsService {
             return tweets.subList(page*5 - 5, page*5 - diference);
         }
         if (tweets.size() < page*5) {
-            return new ArrayList<Tweets>();
+            return new ArrayList<>();
         }
         return tweets.subList(page*5 - 5, page*5);
     }

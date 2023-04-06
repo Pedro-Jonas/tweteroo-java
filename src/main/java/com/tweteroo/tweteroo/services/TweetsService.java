@@ -1,6 +1,8 @@
 package com.tweteroo.tweteroo.services;
 
 import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +29,18 @@ public class TweetsService {
         } else {
             System.out.println("Usuário não cadastrado");
         }
+    }
+
+    public List<Tweets> findTweets(int page) {
+        List<Tweets> tweets = repository.findAll();
+        Collections.reverse(tweets);
+        int diference = page*5-tweets.size();
+        if (tweets.size() < page*5 && diference < 5) {
+            return tweets.subList(page*5 - 5, page*5 - diference);
+        }
+        if (tweets.size() < page*5) {
+            return new ArrayList<Tweets>();
+        }
+        return tweets.subList(page*5 - 5, page*5);
     }
 }

@@ -1,6 +1,7 @@
 package com.tweteroo.tweteroo.services;
 
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,5 +43,10 @@ public class TweetsService {
             return new ArrayList<>();
         }
         return tweets.subList(page*5 - 5, page*5);
+    }
+
+    public List<Tweets> findTweetsByUsername (String username) {
+        List<Tweets> tweets = repository.findAll().stream().filter(t -> t.getUsername().equals(username)).collect(Collectors.toList());
+        return tweets;
     }
 }
